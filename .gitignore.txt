@@ -1,10 +1,5 @@
 # Directories
 .vs/
-/.vs/
-.vs\
-\.vs\
-\.vs
-/.vs
 
 # Files
 *.user
