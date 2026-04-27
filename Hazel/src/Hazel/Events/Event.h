@@ -83,4 +83,6 @@ namespace Hazel {
 	{
 		return os << event.ToString();
 	}
+
+	inline std::string format_as(const Event& event) { return event.ToString(); }
 }
