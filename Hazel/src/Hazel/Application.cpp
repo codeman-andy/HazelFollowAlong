@@ -12,6 +12,7 @@ namespace Hazel {
 
 	void Application::Run()
 	{
+		Log::Init();
 		WindowResizeEvent e(1280, 720);
 		HZ_TRACE(e);
 
