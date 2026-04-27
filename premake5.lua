@@ -22,6 +22,9 @@ workspace "HazelFollowAlong"
 		targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 		objdir	  ("obj/" .. outputdir .. "/%{prj.name}")
 
+		pchheader "pch_Hazel.h"
+		pchsource "Hazel/src/pch_Hazel.cpp"
+
 		files
 		{
 			"%{prj.name}/src/**.h",
