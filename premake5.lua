@@ -11,6 +11,14 @@ workspace "HazelFollowAlong"
 
 	outputdir = "%{cfg.system}-%{cfg.architecture}-%{cfg.buildcfg}"
 
+	-- Include directories relative to root folder (.sln directory)
+	IncludeDir = {} -- Initializes a .lua Table-struct
+	IncludeDir["GLFW"] = "Hazel/vendor/GLFW/include"
+
+	-- This actually includes the 'premake5.lua' file in GLFW's directory
+	-- akin to a C++ '#include' directive
+	include "Hazel/vendor/GLFW"
+
 	project "Hazel"
 
 		location "Hazel"
@@ -20,7 +28,7 @@ workspace "HazelFollowAlong"
 		language "C++"
 
 		targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-		objdir	  ("obj/" .. outputdir .. "/%{prj.name}")
+		objdir    ("obj/" .. outputdir .. "/%{prj.name}")
 
 		pchheader "pch_Hazel.h"
 		pchsource "Hazel/src/pch_Hazel.cpp"
@@ -34,7 +42,14 @@ workspace "HazelFollowAlong"
 		includedirs
 		{
 			"%{prj.name}/src",
-			"%{prj.name}/vendor/spdlog/include"
+			"%{prj.name}/vendor/spdlog/include",
+			"%{IncludeDir.GLFW}"
+		}
+
+		links
+		{
+			"GLFW",
+			"opengl32.lib"
 		}
 
 		postbuildcommands
