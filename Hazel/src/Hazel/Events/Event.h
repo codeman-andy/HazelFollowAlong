@@ -1,5 +1,7 @@
 #pragma once
 
+#include "pch_Hazel.h"
+
 #include "Hazel/Core.h"
 
 
