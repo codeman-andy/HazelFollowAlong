@@ -4,6 +4,10 @@
 
 #include "Hazel/Window.h"
 
+#include "Hazel/Events/ApplicationEvent.h"
+#include "Hazel/Events/KeyEvent.h"
+#include "Hazel/Events/MouseEvent.h"
+
 
 namespace Hazel {
 

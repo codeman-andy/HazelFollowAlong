@@ -5,7 +5,7 @@
 
 namespace Hazel {
 
-	class HAZEL_API KeyEvent : Event {
+	class HAZEL_API KeyEvent : public Event {
 	public:
 		inline int GetKeyCode() const { return m_KeyCode; }
 
