@@ -33,6 +33,9 @@ namespace Hazel {
 
 		while (m_Running == true)
 		{
+			for (Layer* layer : m_LayerStack)
+				layer->OnUpdate();
+
 			m_Window->OnUpdate();
 		}
 	}
@@ -44,7 +47,19 @@ namespace Hazel {
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_CALLBACK_FN(OnWindowClose));
 
 		HZ_CORE_TRACE("{0}", event);
+
+		// Goes top-to-bottom through the layer-stack
+		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
+		{
+			(*--it)->OnEvent(event);
+			if (event.Handled())
+				break;
+		}
 	}
+
+	void Application::PushLayer(Layer* layer) { m_LayerStack.PushLayer(layer); }
+
+	void Application::PushOverlay(Layer* overlay) { m_LayerStack.PushOverlay(overlay); }
 
 	bool Application::OnWindowClose(WindowCloseEvent& event)
 	{
